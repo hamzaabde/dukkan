@@ -1,0 +1,23 @@
+{
+    "name": "yasmin",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "snowpack dev",
+        "build": "snowpack build"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "devDependencies": {
+        "@snowpack/plugin-react-refresh": "^2.5.0",
+        "snowpack": "^3.8.2"
+    },
+    "dependencies": {
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-redux": "^7.2.4",
+        "redux": "^4.1.0"
+    }
+}

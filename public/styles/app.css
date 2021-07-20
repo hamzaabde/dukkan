@@ -1,0 +1,42 @@
+.app {
+    /* sizes */
+    --xs: 0.06rem;
+    --sm-1: 0.12rem;
+    --sm-2: 0.25rem;
+    --sm-3: 0.5rem;
+    --sm-4: 0.75rem;
+    --md-1: 1rem;
+    --md-2: 1.25rem;
+    --md-3: 1.5rem;
+    --md-4: 1.75rem;
+    --lr-1: 2rem;
+    --lr-1: 2.25rem;
+    --lr-1: 2.5rem;
+    --lr-1: 2.75rem;
+    --xl: 3rem;
+
+    /* colors */
+    --primary: hsl(255, 78%, 50%);
+    --primary-light: hsl(255, 78%, 65%);
+    --primary-dark: hsl(255, 78%, 35%);
+
+    --secondary: hsl(150, 78%, 50%);
+    --secondary-light: hsl(150, 78%, 65%);
+    --secondary-dark: hsl(150, 78%, 35%);
+
+    --accent: hsl(252, 100%, 98%);
+    --accent-light: hsl(255, 90%, 80%);
+    --accent-dark: hsl(255, 60%, 50%);
+
+    --dark: hsl(255, 69%, 10%);
+    --dark-light: hsl(254, 27%, 23%);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app__content {
+    width: 960px;
+}
