@@ -1,0 +1,21 @@
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: var(--xl) 0;
+    border-top: var(--sm-1) solid var(--accent-dark);
+}
+
+.footer__content {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Roboto, 'Segoe UI', sans-serif;
+}
+
+.footer .logo {
+    font-size: var(--md-3);
+    color: var(--dark);
+}
