@@ -1,0 +1,10 @@
+// [snowpack] add styles to the page (skip if no document exists)
+if (typeof document !== 'undefined') {
+  const code = ".header {\r\n    display: flex;\r\n    flex-flow: column nowrap;\r\n    align-items: center;\r\n    width: 100%;\r\n}\r\n\r\n/* hero */\r\n\r\n.hero {\r\n    display: flex;\r\n    flex-flow: row nowrap;\r\n    /* flex: 1 1 0; */\r\n    width: 100%;\r\n    height: 510px;\r\n    background: hsl(255, 79%, 32%);\r\n    background: linear-gradient(\r\n        160deg,\r\n        hsl(255, 79%, 32%) 29%,\r\n        hsl(255, 87%, 57%) 100%\r\n    );\r\n    background-image: url(/images/hero-backdrop.jpg);\r\n    background-size: cover;\r\n    font-family: Roboto, 'Segoe UI', sans-serif;\r\n}\r\n\r\n.hero__backdrop {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n\r\n.hero__content {\r\n    position: relative;\r\n    display: flex;\r\n    flex-flow: column nowrap;\r\n    align-items: center;\r\n}\r\n\r\n.hero__heading {\r\n    color: var(--accent-light);\r\n    font-family: 'Vollkorn', cursive;\r\n    font-size: var(--lr-2);\r\n    font-weight: 900;\r\n    font-style: italic;\r\n    text-align: center;\r\n    margin-bottom: var(--md-4);\r\n}\r\n\r\n.hero__search {\r\n    display: flex;\r\n    width: 100%;\r\n}\r\n\r\n.hero__input {\r\n    flex: 2 1 0;\r\n    padding: var(--md-1);\r\n    border: var(--sm-2) solid transparent;\r\n    border-top-left-radius: var(--sm-2);\r\n    border-bottom-left-radius: var(--sm-2);\r\n    color: var(--dark-thin-light);\r\n    font-size: var(--md-2);\r\n    font-weight: 600;\r\n}\r\n\r\n.hero__input:focus {\r\n    border-color: var(--secondary-dark);\r\n}\r\n\r\n.hero__submit {\r\n    flex: 1 0 content;\r\n    padding: var(--md-1);\r\n    border-top-right-radius: var(--sm-2);\r\n    border-bottom-right-radius: var(--sm-2);\r\n    background-color: var(--secondary);\r\n}\r\n";
+
+  const styleEl = document.createElement("style");
+  const codeEl = document.createTextNode(code);
+  styleEl.type = 'text/css';
+  styleEl.appendChild(codeEl);
+  document.head.appendChild(styleEl);
+}

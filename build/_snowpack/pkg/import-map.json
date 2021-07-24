@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "react": "./react.js",
+    "react-dom": "./react-dom.js",
+    "react-router-dom": "./react-router-dom.js",
+    "react-simple-star-rating": "./react-simple-star-rating.js",
+    "uuid": "./uuid.js"
+  }
+}

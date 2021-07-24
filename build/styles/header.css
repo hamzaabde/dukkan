@@ -1,0 +1,78 @@
+.header {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+}
+
+/* hero */
+
+.hero {
+    display: flex;
+    flex-flow: row nowrap;
+    /* flex: 1 1 0; */
+    width: 100%;
+    height: 510px;
+    background: hsl(255, 79%, 32%);
+    background: linear-gradient(
+        160deg,
+        hsl(255, 79%, 32%) 29%,
+        hsl(255, 87%, 57%) 100%
+    );
+    background-image: url(/images/hero-backdrop.jpg);
+    background-size: cover;
+    font-family: Roboto, 'Segoe UI', sans-serif;
+}
+
+.hero__backdrop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.hero__content {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.hero__heading {
+    color: var(--accent-light);
+    font-family: 'Vollkorn', cursive;
+    font-size: var(--lr-2);
+    font-weight: 900;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: var(--md-4);
+}
+
+.hero__search {
+    display: flex;
+    width: 100%;
+}
+
+.hero__input {
+    flex: 2 1 0;
+    padding: var(--md-1);
+    border: var(--sm-2) solid transparent;
+    border-top-left-radius: var(--sm-2);
+    border-bottom-left-radius: var(--sm-2);
+    color: var(--dark-thin-light);
+    font-size: var(--md-2);
+    font-weight: 600;
+}
+
+.hero__input:focus {
+    border-color: var(--secondary-dark);
+}
+
+.hero__submit {
+    flex: 1 0 content;
+    padding: var(--md-1);
+    border-top-right-radius: var(--sm-2);
+    border-bottom-right-radius: var(--sm-2);
+    background-color: var(--secondary);
+}
