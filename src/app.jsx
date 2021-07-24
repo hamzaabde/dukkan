@@ -15,7 +15,7 @@ import { ProductPage } from './pages/Product'
 import '/styles/app.css'
 
 const App = () => {
-    const { getAllProducts, getProduct } = useProducts()
+    const { getAllProducts, getProduct, search, categories } = useProducts()
     const cart = useCart()
 
     console.log(cart.getCart())
@@ -30,8 +30,13 @@ const App = () => {
                     <Route path="/product/:id">
                         <ProductPage getProduct={getProduct} cart={cart} />
                     </Route>
-                    <Route exact path="/products">
-                        <Products products={getAllProducts()} cart={cart} />
+                    <Route path="/products">
+                        <Products
+                            products={getAllProducts()}
+                            search={search}
+                            categories={categories}
+                            cart={cart}
+                        />
                     </Route>
                     <Route path="/cart">
                         <Cart cart={cart} />

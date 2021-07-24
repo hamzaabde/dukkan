@@ -1,7 +1,6 @@
 import React from 'react'
-import { v4 } from 'uuid'
 
-const CartItem = ({ item, remove }) => (
+const CartItem = ({ item, remove, index }) => (
     <div className="cart-item">
         <div className="cart-item__image">
             <img src={item.image} />
@@ -11,7 +10,7 @@ const CartItem = ({ item, remove }) => (
         <button
             className="cart-item__remove"
             onClick={() => {
-                remove(item)
+                remove(index)
             }}
         >
             x
@@ -21,12 +20,13 @@ const CartItem = ({ item, remove }) => (
 
 const CartItems = ({ cart }) => (
     <div className="cart-page__items">
-        {cart.getCart().length &&
+        {cart.getCart()[0] &&
             cart
                 .getCart()
-                .map(cartItem => (
+                .map((cartItem, i) => (
                     <CartItem
-                        key={v4()}
+                        key={i}
+                        index={i}
                         item={cartItem}
                         remove={cart.removeFromCart}
                     />

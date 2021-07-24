@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { v4 } from 'uuid'
 
 const randomDiscount = () => {
     return Math.floor(Math.random() * 50)
@@ -9,16 +10,16 @@ const randomRating = () => {
 }
 
 export const useProducts = () => {
-    const [products, setProducts] = useState(null)
+    const [products, setProducts] = useState([])
 
     useEffect(async () => {
-        const productsData = await fetch(
-            'https://fakestoreapi.com/products'
-        ).then(res => res.json())
-
-        setProducts(
-            productsData.map(product => ({
-                id: product.id,
+        let productsData
+        if (!sessionStorage.getItem('products')) {
+            const data = await fetch('https://fakestoreapi.com/products').then(
+                res => res.json()
+            )
+            productsData = data.map(product => ({
+                id: v4(),
                 title: product.title,
                 price: Math.round(
                     (product.price / 100) * (100 - randomDiscount())
@@ -27,61 +28,75 @@ export const useProducts = () => {
                 desc: product.description,
                 rating: 2 + randomRating(),
                 image: product.image,
+                category:
+                    product.category === 'electronics'
+                        ? 'electronics'
+                        : product.category === 'jewelery'
+                        ? 'jewelery'
+                        : 'clothing',
             }))
-        )
+            sessionStorage.setItem('products', JSON.stringify(productsData))
+        } else {
+            productsData = JSON.parse(sessionStorage.getItem('products'))
+        }
+
+        setProducts(new Set(productsData))
     }, [])
 
-    const getAllProducts = () => products
+    const getAllProducts = () => Array.from(products)
 
     const getProduct = id => {
         const [product, setProduct] = useState(null)
 
-        useEffect(async () => {
-            const productData = await fetch(
-                'https://fakestoreapi.com/products/' + id
-            ).then(res => res.json())
-
-            setProduct({
-                id: productData.id,
-                title: productData.title,
-                price: Math.round(
-                    (productData.price / 100) * (100 - randomDiscount())
-                ),
-                originalPrice: productData.price,
-                desc: productData.description,
-                rating: 2 + randomRating(),
-                image: productData.image,
-            })
-        }, [id])
+        useEffect(() => {
+            for (let product of products) {
+                console.log(product.id)
+                if (product.id === id) {
+                    setProduct(product)
+                }
+            }
+        }, [id, products, product])
 
         return product
     }
 
-    const getCategories = category => {
-        const [products, setProducts] = useState(null)
+    const search = searchParams => {
+        const [searchResult, setSearchResult] = useState([])
 
-        useEffect(async () => {
-            const productsData = await fetch(
-                'https://fakestoreapi.com/products/category/' + category
-            ).then(res => res.json())
+        useEffect(() => {
+            const keywords = searchParams.split('+').map(keyword => {
+                return new RegExp(keyword, 'ig')
+            })
+            const temp = []
+            for (let product of products) {
+                for (let keyword of keywords) {
+                    if (keyword.test(product.title)) {
+                        temp.push(product)
+                    }
+                }
+            }
 
-            setProducts(
-                productsData.map(product => ({
-                    id: product.id,
-                    title: product.title,
-                    price: Math.round(
-                        (product.price / 100) * (100 - randomDiscount())
-                    ),
-                    originalPrice: product.price,
-                    desc: product.description,
-                    rating: 2 + randomRating(),
-                    image: product.image,
-                }))
-            )
+            setSearchResult([...searchResult, ...temp])
+            console.log('regex', keywords)
+            // console.log('products', products)
         }, [products])
 
-        return products
+        return Array.from(new Set(searchResult))
     }
 
-    return { getAllProducts, getProduct, getCategories }
+    const categories = category => {
+        const [cat, setCat] = useState([])
+
+        useEffect(() => {
+            const arr = Array.from(products)
+
+            setCat(arr.filter(product => product.category === category))
+
+            console.log(arr)
+        }, [products])
+        console.log(cat)
+        return cat
+    }
+
+    return { getAllProducts, getProduct, search, categories }
 }

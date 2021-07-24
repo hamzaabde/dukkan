@@ -13,14 +13,13 @@ export const Home = ({ products, cart }) => {
     document.title = 'Dukkan | Home'
 
     return (
-        <div className="home">
-            <Header searchBar={false} />
+        <>
+            <Header searchBar={false} cartItems={cart.getCart().length} />
             <Main>
                 <Categories />
                 {products && <RecentProducts products={products.slice(0, 3)} />}
-                
             </Main>
             <Footer />
-        </div>
+        </>
     )
 }

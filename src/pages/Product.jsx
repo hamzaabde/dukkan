@@ -6,21 +6,18 @@ import { Footer } from '../components/Footer'
 import { Product } from '../components/ProductComps'
 
 export const ProductPage = ({ getProduct, cart }) => {
-    const { id } = useParams()
+    const product = getProduct(useParams().id)
+    document.title = `Dukkan | ${product ? product.title : 'loading'}`
 
-    const product = getProduct(id)
-    document.title = `Dukkan | ${product && product.title}`
-
-    console.log(id)
     return (
-        <div className="products">
-            <Header cart={cart} />
+        <>
+            <Header cartItems={cart.getCart().length} />
             <Main>
                 {product && (
                     <Product product={product} addToCart={cart.addToCart} />
                 )}
             </Main>
             <Footer />
-        </div>
+        </>
     )
 }

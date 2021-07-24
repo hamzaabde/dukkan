@@ -7,45 +7,51 @@ export const Categories = () => {
         <div className="categories">
             <h2 className="categories__heading">Categories</h2>
             <div className="categories__content app__content">
-                <div className="category">
-                    <div className="category__image">
-                        <img src="/images/electronics.png" />
+                <Link to="/products/electronics">
+                    <div className="category">
+                        <div className="category__image">
+                            <img src="/images/electronics.png" />
+                        </div>
+                        <div className="category__desc">
+                            <h3 className="c__desc--heading">Electronics</h3>
+                            <p className="c__desc--para">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Dolor rerum qui provident
+                                doloremque, est assumenda?
+                            </p>
+                        </div>
                     </div>
-                    <div className="category__desc">
-                        <h3 className="c__desc--heading">Electronics</h3>
-                        <p className="c__desc--para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Dolor rerum qui provident doloremque, est
-                            assumenda?
-                        </p>
+                </Link>
+                <Link to="/products/jewelery">
+                    <div className="category">
+                        <div className="category__image">
+                            <img src="/images/jewelery.png" />
+                        </div>
+                        <div className="category__desc">
+                            <h3 className="c__desc--heading">Jewelery</h3>
+                            <p className="c__desc--para">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Dolor rerum qui provident
+                                doloremque, est assumenda?
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div className="category">
-                    <div className="category__image">
-                        <img src="/images/jewelery.png" />
+                </Link>
+                <Link to="/products/clothing">
+                    <div className="category">
+                        <div className="category__image">
+                            <img src="/images/electronics.png" />
+                        </div>
+                        <div className="category__desc">
+                            <h3 className="c__desc--heading">Clothing</h3>
+                            <p className="c__desc--para">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Dolor rerum qui provident
+                                doloremque, est assumenda?
+                            </p>
+                        </div>
                     </div>
-                    <div className="category__desc">
-                        <h3 className="c__desc--heading">Jewelery</h3>
-                        <p className="c__desc--para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Dolor rerum qui provident doloremque, est
-                            assumenda?
-                        </p>
-                    </div>
-                </div>
-                <div className="category">
-                    <div className="category__image">
-                        <img src="/images/electronics.png" />
-                    </div>
-                    <div className="category__desc">
-                        <h3 className="c__desc--heading">Clothing</h3>
-                        <p className="c__desc--para">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Dolor rerum qui provident doloremque, est
-                            assumenda?
-                        </p>
-                    </div>
-                </div>
+                </Link>
             </div>
         </div>
     )
@@ -58,7 +64,7 @@ export const ProductCard = ({ product }) => (
                 <img src={product.image} />
             </div>
             <div className="product__desc">
-                <h3 className="desc__name">{product.title}</h3>
+                <h3 className="desc__name">{product.title.substr(0, 50)}</h3>
                 <div className="product__rating">
                     <RatingView ratingValue={product.rating} />
                 </div>
@@ -84,22 +90,25 @@ export const RecentProducts = ({ products }) => (
     </div>
 )
 
-export const ProductGrid = ({ products, title }) => (
-    <div className="products">
-        <div className="products__content app__contents">
-            <h2 className="products__heading">{title}</h2>
-            <div className="products__listing">
-                {products.map(product => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
+export const ProductGrid = ({ products, title }) => {
+
+    return (
+        <div className="products">
+            <div className="products__content app__contents">
+                <h2 className="products__heading">{title}</h2>
+                <div className="products__listing">
+                    {products.map(product => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
             </div>
         </div>
-    </div>
-)
+    )
+}
 
 export const Product = ({ product, addToCart }) => (
     <div className="product-page">
-        <div className="product-page__content app__content">
+        <div className="product-page__content">
             <div className="product-page__image">
                 <img src={product.image} />
             </div>

@@ -42,9 +42,9 @@
 .app__content {
     width: 768px;
 }
-
+/* 
 @media (max-width: 820px) {
-    .app__content {
+    .app__content 
         width: 100%;
     }
-}
+} */

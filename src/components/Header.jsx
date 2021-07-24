@@ -1,7 +1,6 @@
 import React from 'react'
 import { Nav } from './Nav'
 import { Search } from './Icons'
-// import {Link} from 'react-router-dom'
 
 const Hero = () => (
     <div className="hero">
@@ -11,8 +10,14 @@ const Hero = () => (
                     High Quality Products From Well Know Brands All Around The
                     World
                 </h1>
-                <form className="hero__search">
-                    <input type="text" className="hero__input" name="search" />
+                <form action="/products" className="hero__search">
+                    <input
+                        type="text"
+                        className="hero__input"
+                        name="search"
+                        placeholder="Enter keywords"
+                        required
+                    />
                     <button type="submit" className="hero__submit">
                         <Search color="#0f0825" />
                     </button>
@@ -22,10 +27,10 @@ const Hero = () => (
     </div>
 )
 
-export const Header = ({ searchBar = true }) => {
+export const Header = ({ searchBar = true, cartItems }) => {
     return (
         <header className="header">
-            <Nav searchBar={searchBar} />
+            <Nav searchBar={searchBar} cartItems={cartItems} />
             {!searchBar && <Hero />}
         </header>
     )

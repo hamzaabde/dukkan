@@ -1,25 +1,18 @@
 import { useState } from 'react'
 import { Product } from '../components/ProductComps'
+import { v4 } from 'uuid'
 
 export const useCart = () => {
     const [cart, setCart] = useState([])
 
-    const addToCart = product => {
-        setCart([...cart, product])
+    const addToCart = item => {
+        item.cartId = v4()
+        setCart([...cart, item])
     }
 
-    const removeFromCart = item => {
-        let newCart
-
-        const indexOfItem = cart.indexOf(item)
-        if (indexOfItem === 0) cart.shift()
-        if (indexOfItem === cart.length - 1) cart.pop()
-        else
-            newCart = [
-                ...cart.slice(0, indexOfItem),
-                ...cart.slice(indexOfItem + 1),
-            ]
-
+    const removeFromCart = index => {
+        const newCart = cart.filter((_, i) => i !== index)
+        console.log(newCart, index)
         setCart(newCart)
     }
 

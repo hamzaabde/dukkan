@@ -7,11 +7,13 @@ import { Link } from 'react-router-dom'
 //styles
 import '/styles/nav.css'
 
-const Cart = () => {
+const Cart = ({ cartItems }) => {
     return (
         <div className="cart">
             <CartIcon color="#f7f5ff" />
-            <div className="cart-items-number">1</div>
+            {cartItems ? (
+                <div className="cart-items-number">{cartItems}</div>
+            ) : null}
         </div>
     )
 }
@@ -25,10 +27,13 @@ const UserDropdown = ({ avatar }) => {
 
     return (
         <div className="user-menu" onClick={handleClick}>
-            <div className="user__name">
-                <span>Hamsa</span>
-            </div>
-            <div className="user__avatar">
+            <Link to="/products">
+                <div className="user__name">
+                    <span>All Products</span>
+                </div>
+            </Link>
+
+            {/* <div className="user__avatar">
                 <img src={avatar} />
             </div>
             <ChevronDown color="#f7f5ff" />
@@ -37,7 +42,7 @@ const UserDropdown = ({ avatar }) => {
                     <button className="user__dropdown__option">Orders</button>
                     <button className="user__dropdown__option">Logout</button>
                 </div>
-            )}
+            )} */}
         </div>
     )
 }
@@ -81,17 +86,9 @@ export const Select = ({ options }) => {
     )
 }
 
-const options = [
-    'All Products',
-    'Smart phones',
-    'Tablets',
-    'Desktop Computers',
-    'Laptops',
-    "TV's",
-    'Watchs',
-]
+const options = ['All Products', 'Electronics', 'Jewelery', 'Clothes']
 
-export const Nav = ({ searchBar = true }) => (
+export const Nav = ({ searchBar = true, cartItems }) => (
     <nav className="nav">
         <div className="app__content nav__content">
             <Link to="/">
@@ -103,12 +100,17 @@ export const Nav = ({ searchBar = true }) => (
             {searchBar && (
                 <div className="search-box">
                     <Select options={options} />
-                    <form className="search-box-form" autoComplete="off">
+                    <form
+                        action="/products"
+                        className="search-box-form"
+                        autoComplete="off"
+                    >
                         <input
                             type="text"
                             className="search-input"
                             name="search"
                             placeholder="Enter keywords"
+                            required
                         />
                         <button className="search-btn" type="submit">
                             <Search color="hsl(255, 60%, 50%)" width={16} />
@@ -119,7 +121,7 @@ export const Nav = ({ searchBar = true }) => (
             <div className="user">
                 <UserDropdown avatar="/icons/user.svg" />
                 <Link to="/cart">
-                    <Cart />
+                    <Cart cartItems={cartItems} />
                 </Link>
             </div>
         </div>

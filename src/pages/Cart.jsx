@@ -8,12 +8,12 @@ export const Cart = ({ cart }) => {
     document.title = 'Dukkan | Your cart'
 
     return (
-        <div className="cart-page">
-            <Header cart={cart} />
+        <>
+            <Header cartItems={cart.getCart().length} />
             <Main>
                 <CartContainer cart={cart} />
             </Main>
             <Footer />
-        </div>
+        </>
     )
 }
