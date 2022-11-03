@@ -1,3 +1,7 @@
+## Live site:
+
+[live site](https://react-ecommerce-prototype.firebaseapp.com/)
+
 ## Dev notes:
 
 The app must be componentized. - Flow downward component progression. - Change things as deemed necessary. - Use Dripicons-v2 icon pack. - Use images that are similar to the one in the design. - Use atleast three fonts. - The app must be responsive and fit well on all devices with feature compromise. - Must be finished with 24hrs or less (work hours). - You must use Firebase as a backend for the app.
